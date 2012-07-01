@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="musicController" class="cn.com.fojiao.api.controller.MusicController"></bean>
+		
+<!-- 	<bean id="hotTopicsManager" class="net.bdwm.api.utils.HotTopicsManager" init-method="init"> -->
+<!-- 	<property name="bbsPrefixUrl"><value>http://www.bdwm.net/</value></property> -->
+<!-- 	<property name="bbsMainBoardUrl"><value>http://www.bdwm.net/bbs/main.php</value></property> -->
+<!-- 	<property name="sleepSecond"><value>300</value></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="boardManager" class="net.bdwm.api.utils.BoardManager" init-method="init"> -->
+<!-- 	<property name="boardUrlPrefix"><value>http://www.bdwm.net/bbs/bbstop.php?</value></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="topicManager" class="net.bdwm.api.utils.TopicManager" init-method="init"> -->
+<!-- 	<property name="bbsPrefixUrl"><value>http://www.bdwm.net/bbs/</value></property></bean> -->
+	
+<!-- 	<bean id="divisionManager" class="net.bdwm.api.utils.DivisionManager" init-method="init"> -->
+<!-- 	<property name="bbsPrefixUrl"><value>http://www.bdwm.net/bbs/</value></property> -->
+<!-- 	<property name="mainDivisionUrl"><value>http://www.bdwm.net/bbs/bbsxboa.php?group=0</value></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="divisionController" class="net.bdwm.api.controller.DivisionController"> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="topicController" class="net.bdwm.api.controller.TopicController" init-method="init"> -->
+<!-- 	<property name="topicManager"><ref bean="topicManager"/> -->
+<!-- 	</property> -->
+<!-- 	</bean> -->
+		
+<!-- 	<bean id="hotTopicsController" class="net.bdwm.api.controller.HotTopicsController" init-method="init"> -->
+<!-- 	<property name="hotTopicsManager"><ref bean="hotTopicsManager"/></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="boardController" class="net.bdwm.api.controller.BoardController" init-method="init"> -->
+<!-- 	<property name="boardManager"><ref bean="boardManager"/></property> -->
+<!-- 	</bean> -->
+	
+		
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
