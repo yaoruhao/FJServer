@@ -1,6 +1,9 @@
 package cn.com.fojiao.api.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.com.fojiao.api.manager.DataManager;
+import cn.com.fojiao.api.model.Music;
+
 
 /**
  * @author Ruhao Yao: yaoruhao@gmail.com 
@@ -24,6 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/music")
 public class MusicController {
 	private static Log logger = LogFactory.getLog(MusicController.class);
+	private static HashMap<String, ArrayList<Music>> musicMap;
+	
+	public void init() {
+		musicMap = DataManager.getInstance().getMusics();
+	}
 
 	@RequestMapping("type/{typeStr}/start/{startNum}/length/{lengthNum}")
 	public ModelAndView handleRequest(HttpServletRequest request,

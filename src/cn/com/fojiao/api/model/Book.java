@@ -40,6 +40,11 @@ public class Book {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	@Override
+	public String toString() {
+		return "Book [name=" + name + ", type=" + type + ", size=" + size
+				+ ", url=" + url + "]";
+	}
 	
 
 }

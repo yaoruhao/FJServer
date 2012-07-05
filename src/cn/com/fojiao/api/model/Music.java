@@ -8,6 +8,7 @@ package cn.com.fojiao.api.model;
 public class Music {
 	
 	private String url;
+
 	private String name;
 	private String size;
 	private String type;
@@ -41,6 +42,10 @@ public class Music {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	@Override
+	public String toString() {
+		return "Music [url=" + url + ", name=" + name + ", size=" + size
+				+ ", type=" + type + "]";
+	}
 
 }

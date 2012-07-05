@@ -66,6 +66,13 @@ public class Image {
 	public void setSmallPicSize(String smallPicSize) {
 		this.smallPicSize = smallPicSize;
 	}
+	@Override
+	public String toString() {
+		return "Image [name=" + name + ", smallPicUrl=" + smallPicUrl
+				+ ", bigPicUrl=" + bigPicUrl + ", type=" + type
+				+ ", orientation=" + orientation + ", bigPicSize=" + bigPicSize
+				+ ", smallPicSize=" + smallPicSize + "]";
+	}
 	
 
 }

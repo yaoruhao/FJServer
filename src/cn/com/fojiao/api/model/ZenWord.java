@@ -25,6 +25,10 @@ public class ZenWord {
 	public void setImage(Image image) {
 		this.image = image;
 	}
+	@Override
+	public String toString() {
+		return "ZenWord [content=" + content + ", image=" + image + "]";
+	}
 	
 
 }
