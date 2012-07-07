@@ -1,39 +1,35 @@
 package cn.com.fojiao.api.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import cn.com.fojiao.api.manager.DataManager;
-import cn.com.fojiao.api.model.Music;
+import cn.com.fojiao.api.model.Book;
 
 
 /**
- * @author Ruhao Yao: yaoruhao@gmail.com 
- * This is the MusicController to handle music requests.
  * 
+ * @author Ruhao Yao : yaoruhao@gmail.com
+ * BookController receive book request, then return book info.
+ *
  */
 @Controller
-@RequestMapping("/music")
-public class MusicController {
-	private static Log logger = LogFactory.getLog(MusicController.class);
-	private static HashMap<String, ArrayList<Music>> musicMap;
+@RequestMapping("/book")
+public class BookController {
+	private static Log logger = LogFactory.getLog(BookController.class);
+	private static HashMap<String, ArrayList<Book>> bookMap;
 	
 	public void init() {
-		musicMap = DataManager.getInstance().getMusics();
+		bookMap = DataManager.getInstance().getBooks();
 	}
 
 	@RequestMapping("type/{typeStr}/start/{startNum}/length/{lengthNum}")
@@ -48,5 +44,4 @@ public class MusicController {
 		long endTime = System.currentTimeMillis();
 		return new ModelAndView("result", "message", message);
 	}
-
 }
