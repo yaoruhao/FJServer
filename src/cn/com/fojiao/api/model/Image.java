@@ -12,17 +12,14 @@ public class Image {
 	private String type;
 	private String orientation;
 	private String bigPicSize;
-	private String smallPicSize;
 	public Image(String name, String smallPicUrl, String bigPicUrl,
-			String type, String orientation, String bigPicSize,
-			String smallPicSize) {
+			String type, String orientation, String bigPicSize) {
 		this.name = name;
 		this.smallPicUrl = smallPicUrl;
 		this.bigPicUrl = bigPicUrl;
 		this.type = type;
 		this.orientation = orientation;
 		this.bigPicSize = bigPicSize;
-		this.smallPicSize = smallPicSize;
 	}
 	public String getName() {
 		return name;
@@ -60,18 +57,11 @@ public class Image {
 	public void setBigPicSize(String bigPicSize) {
 		this.bigPicSize = bigPicSize;
 	}
-	public String getSmallPicSize() {
-		return smallPicSize;
-	}
-	public void setSmallPicSize(String smallPicSize) {
-		this.smallPicSize = smallPicSize;
-	}
 	@Override
 	public String toString() {
 		return "Image [name=" + name + ", smallPicUrl=" + smallPicUrl
 				+ ", bigPicUrl=" + bigPicUrl + ", type=" + type
-				+ ", orientation=" + orientation + ", bigPicSize=" + bigPicSize
-				+ ", smallPicSize=" + smallPicSize + "]";
+				+ ", orientation=" + orientation + ", bigPicSize=" + bigPicSize + "]";
 	}
 	
 

@@ -210,7 +210,7 @@ public class DataManager {
 					String zenImage = splitResult[1].trim();
 					Image tempImage = new Image(zenImage, ZEN_IMAGE_URL_PREFIX
 							+ "small/" + zenImage, ZEN_IMAGE_URL_PREFIX
-							+ "big/" + zenImage, "zenimage", null, null, null);
+							+ "big/" + zenImage, "zenimage", null, null);
 					ZenWord tempZenWord = new ZenWord(zenContent, tempImage);
 					zenWordList.add(tempZenWord);
 				}
@@ -253,7 +253,7 @@ public class DataManager {
 			String size = String.valueOf(ossObjectSummary.getSize());
 			Image image = new Image(name, HOST_PREFIX + prefixUrl + "small/"
 					+ name, HOST_PREFIX + prefixUrl + "big/" + name, type,
-					orientation, size, null);
+					orientation, size);
 			RandomInsert(imageList, image);
 			RandomInsert(totalImageList, image);
 		}

@@ -3,6 +3,7 @@ package cn.com.fojiao.api.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,11 +42,29 @@ public class MusicController {
 			HttpServletResponse response, @PathVariable String typeStr,
 			@PathVariable String startNum, @PathVariable String lengthNum)
 			throws Exception {
-		long startTime = System.currentTimeMillis();
-		String message = null;
+		String message = "[]";
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("text/json;charset=utf-8");
-		long endTime = System.currentTimeMillis();
+		int start = 0;
+		int length = 0;
+		ArrayList<Music> musicList = musicMap.get(typeStr);
+		if (musicList == null) {
+			return new ModelAndView("result", "message", message);
+		}
+		try {
+			start = Integer.valueOf(startNum);
+			length = Integer.valueOf(lengthNum);
+		} catch (NumberFormatException e) {
+			logger.warn("MusicController parse int failed.");
+			e.printStackTrace();
+			return new ModelAndView("result", "message", message);
+		}
+		if (start < 0 || start >= musicList.size() || length <= 0) {
+			return new ModelAndView("result", "message", message);
+		}
+		int finish = Math.min(musicList.size(), start + length);
+		List<Music> resultList = musicList.subList(start, finish);
+		message = JSONArray.fromObject(resultList).toString();
 		return new ModelAndView("result", "message", message);
 	}
 
