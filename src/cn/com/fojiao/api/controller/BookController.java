@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -17,21 +19,24 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.com.fojiao.api.manager.DataManager;
 import cn.com.fojiao.api.model.Book;
 
-
 /**
  * 
- * @author Ruhao Yao : yaoruhao@gmail.com
- * BookController receive book request, then return book info.
- *
+ * @author Ruhao Yao : yaoruhao@gmail.com BookController receive book request,
+ *         then return book info.
+ * 
  */
 @Controller
 @RequestMapping("/book")
 public class BookController {
 	private static Log logger = LogFactory.getLog(BookController.class);
 	private static HashMap<String, ArrayList<Book>> bookMap;
-	
+	private static HashMap<String, Integer> summaryMap = new HashMap<String, Integer>();
+
 	public void init() {
 		bookMap = DataManager.getInstance().getBooks();
+		for (String key : bookMap.keySet()) {
+			summaryMap.put(key, bookMap.get(key).size());
+		}
 	}
 
 	@RequestMapping("type/{typeStr}/start/{startNum}/length/{lengthNum}")
@@ -62,6 +67,13 @@ public class BookController {
 		int finish = Math.min(bookList.size(), start + length);
 		List<Book> resultList = bookList.subList(start, finish);
 		message = JSONArray.fromObject(resultList).toString();
+		return new ModelAndView("result", "message", message);
+	}
+
+	@RequestMapping("/summary")
+	public ModelAndView handleSummaryRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String message = JSONObject.fromObject(summaryMap).toString();
 		return new ModelAndView("result", "message", message);
 	}
 }

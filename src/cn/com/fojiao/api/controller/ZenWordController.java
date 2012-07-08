@@ -1,13 +1,14 @@
 package cn.com.fojiao.api.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-
+import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -20,25 +21,26 @@ import cn.com.fojiao.api.model.ZenWord;
 
 /**
  * 
- * @author Ruhao Yao : yaoruhao@gmail.com
- * ZenWordController handles zen word request
- *
+ * @author Ruhao Yao : yaoruhao@gmail.com ZenWordController handles zen word
+ *         request
+ * 
  */
 @Controller
 @RequestMapping("/zenword")
 public class ZenWordController {
 	private static Log logger = LogFactory.getLog(ZenWordController.class);
 	private static ArrayList<ZenWord> zenWordList;
+	private static HashMap<String, Integer> summaryMap = new HashMap<String, Integer>();
 
-	
 	public void init() {
 		zenWordList = DataManager.getInstance().getZenWords();
+		summaryMap.put("zenword", zenWordList.size());
 	}
 
 	@RequestMapping("/start/{startNum}/length/{lengthNum}")
 	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response, @PathVariable String startNum, @PathVariable String lengthNum)
-			throws Exception {
+			HttpServletResponse response, @PathVariable String startNum,
+			@PathVariable String lengthNum) throws Exception {
 		String message = "[]";
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("text/json;charset=utf-8");
@@ -59,6 +61,13 @@ public class ZenWordController {
 		List<ZenWord> resultList = zenWordList.subList(start, finish);
 		message = JSONArray.fromObject(resultList).toString();
 
+		return new ModelAndView("result", "message", message);
+	}
+
+	@RequestMapping("/summary")
+	public ModelAndView handleSummaryRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String message = JSONObject.fromObject(summaryMap).toString();
 		return new ModelAndView("result", "message", message);
 	}
 
