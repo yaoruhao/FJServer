@@ -39,7 +39,7 @@ public class DataManager {
 	private static final String BOOK_DIR = "book";
 	private static final String PIC_DIR = "pic";
 	private static final String HOST_PREFIX = "http://storage.aliyun.com/fojiaoweibo/";
-	private static final String ZEN_WORD_URL = "http://storage.aliyun.com/fojiaoweibo/meiriyichan/每日一禅.txt";
+	private static final String ZEN_WORD_URL = "http://storage.aliyun.com/fojiaoweibo/meiriyichan/meiriyichan.txt";
 	private static final String ZEN_IMAGE_URL_PREFIX = "http://storage.aliyun.com/fojiaoweibo/pic/meiriyichan/";
 	private static final int MAXNUM_PER_FETCH = 1000;
 	private static ArrayList<String> MUSIC_TYPE_LIST = new ArrayList<String>();
